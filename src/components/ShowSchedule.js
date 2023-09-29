@@ -26,7 +26,6 @@ const ShowSchedule = () => {
     const [message, setMessage] = useState(' ');  // status message
 
     useEffect(() => {
-        // called once after intial render
         fetchCourses(termId);
         }, [termId]);
 
