@@ -1,3 +1,4 @@
+// AddCourse.js
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Dialog from '@mui/material/Dialog';
@@ -8,6 +9,14 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 
 function AddCourse(props) {
+  // Define the function to add a course to the user database
+  const addCourse = (course) => {
+    // Your logic to add the course to the user database
+    console.log('Adding course:', course);
+    // Return a promise or perform asynchronous operations if needed
+    return Promise.resolve();
+  };
+
   const [open, setOpen] = useState(false);
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
@@ -29,11 +38,35 @@ function AddCourse(props) {
   };
 
   // Save course and close modal form
-  const handleAdd = () => {
-    // Pass the title and description to the addCourse function
-    props.addCourse({ title, description });
-    handleClose();
-  };
+  // Save course and close modal form
+// Save recipe and close modal form
+const handleAdd = () => {
+  // Make an API call to add the recipe
+  fetch('http://localhost:8080/api/add-recipe', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ title, description }),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error('Failed to add recipe');
+      }
+      return response.json();
+    })
+    .then((data) => {
+      // Additional logic after successfully adding the recipe
+      console.log('Recipe added successfully:', data);
+      handleClose();
+    })
+    .catch((error) => {
+      // Handle error, e.g., display an error message
+      console.error('Error adding recipe:', error);
+    });
+};
+
+
 
   return (
     <div>
@@ -82,7 +115,6 @@ function AddCourse(props) {
   );
 }
 
-// required property:  addCourse is a function to call to perform the Add action
 AddCourse.propTypes = {
   addCourse: PropTypes.func.isRequired,
 };
