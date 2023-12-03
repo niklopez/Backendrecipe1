@@ -1,5 +1,3 @@
-# CST438 Software Engineering California State University Monterey Bay
-# Student Registration project Front End application
+# Recipe App - CST438 Software Engineering
 
-This application is written in React and requires node.js to be installed.
-
+This project is a Recipe App developed as part of the CST438 Software Engineering course at California State University Monterey Bay.
